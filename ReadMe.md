@@ -24,18 +24,30 @@ Ensure the following are installed and configured:
 
 ## 📁 Project Structure
 
-├── atlantis-values.yaml # Custom values for the Helm chart
-├── atlantis.yaml # Atlantis configuration for project/workflow
-├── eks.tf # Creates EKS cluster
-├── helm_atlantis.tf # Deploys Atlantis via Helm chart
-├── iam.tf # IAM roles and policies for EKS/AWS
-├── main.tf # Entry point for Terraform
-├── namespace.tf # Creates the 'atlantis' Kubernetes namespace
-├── outputs.tf # Exposes key outputs (e.g., Atlantis LB URL)
-├── storageclass.tf # Optional: EBS StorageClass for EKS
-├── variables.tf # Input variable definitions
-├── vpc.tf # VPC, subnets, NAT gateways, etc.
-└── deploy_atlantis.sh # Script to deploy entire stack
+terraform-eks-atlantis-homework/
+├── .gitignore
+├── atlantis-values.yaml          # Helm chart values for customizing Atlantis
+├── atlantis.yaml                 # Atlantis workflow and project definitions
+├── encoded.txt                   # (Optional) File to store encoded secrets (e.g., base64)
+├── eks.tf                        # EKS cluster and node group definitions
+├── helm_atlantis.tf             # Helm chart deployment for Atlantis
+├── iam.tf                        # IAM roles and policies for EKS, RBAC setup
+├── main.tf                       # Root module entry point
+├── namespace.tf                 # Defines 'atlantis' namespace in Kubernetes
+├── outputs.tf                   # Terraform outputs including Atlantis LoadBalancer URL
+├── storageclass.tf             # (Optional) EBS volume class definition
+├── terraform.tfstate           # (Generated) Terraform state file (ignore in VCS)
+├── terraform.tfvars            # (Optional) Variable file for runtime values
+├── variables.tf                # Input variable declarations
+├── k8s/atlantis/                # (Optional) Raw K8s manifests (alternative to Helm)
+│   ├── configmap.yaml
+│   ├── deployment.yaml
+│   ├── namespace.yaml
+│   ├── secret.yaml
+│   └── service.yaml
+├── scripts/                     # Utility scripts (e.g., deployment automation)
+│   └── deploy_atlantis.sh      # End-to-end deployment script
+└── README.md                    # This documentation file
 
 ## 🔐 Setup Secrets as Environment Variables
 

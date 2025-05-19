@@ -20,7 +20,7 @@ spec:
         image: runatlantis/atlantis:v0.27.0  # Explicit version recommended
         args:
           - server
-          - --repo-allowlist=github.com/kajal-nerkar/terraform-eks-atlantis-homework
+          - --repo-allowlist=github.com/kajal-nerkar/eks-atlantis-tf
           - --gh-user=$(GITHUB_USER)
           - --gh-token=$(GITHUB_TOKEN)
           - --gh-webhook-secret=$(WEBHOOK_SECRET)
@@ -43,7 +43,7 @@ spec:
                 name: atlantis-github
                 key: webhook-secret
           - name: ATLANTIS_REPO_ALLOWLIST
-            value: "github.com/kajal-nerkar/terraform-eks-atlantis-homework"
+            value: "github.com/kajal-nerkar/eks-atlantis-tf"
           - name: ATLANTIS_LOG_LEVEL
             value: debug
         ports:

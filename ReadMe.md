@@ -67,23 +67,38 @@ chmod +x deploy_atlantis.sh
 
 ## Web Hook Setup ##
 ```
-Click on ⚙️ Settings (top menu)
+## 🔗 GitHub Webhook Configuration
 
-In the left sidebar, click Webhooks
+To allow **Atlantis** to automatically trigger Terraform `plan` and `apply` on pull requests, you need to configure a **webhook** in your GitHub repository:
 
-Click the green Add webhook button
+### 🔧 Steps to Configure the Webhook
 
-Fill in the Webhook Configuration
+1. Navigate to your **GitHub repository**.
+2. Click on **⚙️ Settings** (top-right corner).
+3. From the left sidebar, click **Webhooks**.
+4. Click the **➕ Add webhook** button.
+5. Fill in the following configuration fields:
 
-Field	Value
-Payload URL	http://<ATLANTIS-EXTERNAL-URL>/events
-Content type	application/json
-Secret	Use the same value as TF_VAR_github_webhook_secret
-SSL verification	Optional (choose "Disable SSL verification" if using HTTP)
-Which events trigger	Select Let me select individual events, then check:
-☑️ Pull requests
-☑️ Push
-Active	✅ Leave checked
-<img width="560" alt="image" src="https://github.com/user-attachments/assets/aa0fcd09-a155-47fc-911b-00fbc978778c" />
+| Field               | Value                                                              |
+|--------------------|--------------------------------------------------------------------|
+| **Payload URL**     | `http://<ATLANTIS-EXTERNAL-URL>/events`                           |
+| **Content type**    | `application/json`                                                |
+| **Secret**          | Use the same value as `TF_VAR_github_webhook_secret`              |
+| **SSL verification**| Optional (you can **Disable SSL verification** if using HTTP)     |
+| **Events to trigger** | Select **Let me select individual events**, then check:<br>☑️ Push<br>☑️ Pull requests |
+| **Active**          | ✅ Enabled                                                        |
+
+6. Click **Add webhook** to save the configuration.
+
+### ✅ Screenshot Example
+
+![Webhook Setup Example](https://github.com/user-attachments/assets/aa0fcd09-a155-47fc-911b-00fbc978778c)
+
+> **Note**: Replace `<ATLANTIS-EXTERNAL-URL>` with the actual **LoadBalancer DNS name** for the Atlantis service retrieved via:
+>
+> ```bash
+> kubectl get svc -n atlantis
+> ```
+/>
 
 ```

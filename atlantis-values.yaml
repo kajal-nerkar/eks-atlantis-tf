@@ -1,0 +1,49 @@
+orgAllowlist: github.com/kajal-nerkar/*
+repoAllowlist: github.com/kajal-nerkar/terraform-eks-atlantis-homework
+
+server:
+  extraEnv:
+    - name: ATLANTIS_REPO_ALLOWLIST
+      value: "github.com/kajal-nerkar/terraform-eks-atlantis-homework"
+    - name: ATLANTIS_GH_USER
+      valueFrom:
+        secretKeyRef:
+          name: atlantis-vcs
+          key: github-user
+    - name: ATLANTIS_GH_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: atlantis-vcs
+          key: github-token
+    - name: ATLANTIS_GH_WEBHOOK_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: atlantis-vcs
+          key: webhook-secret
+
+  extraArgs:
+    - --repo-allowlist=github.com/kajal-nerkar/terraform-eks-atlantis-homework
+    - --gh-user=$(ATLANTIS_GH_USER)
+    - --gh-token=$(ATLANTIS_GH_TOKEN)
+    - --gh-webhook-secret=$(ATLANTIS_GH_WEBHOOK_SECRET)
+    - --atlantis-url=http://$(SERVICE_NAME).$(NAMESPACE).svc.cluster.local
+    - --allowed-overrides=workflow   # <-- add this line explicitly here
+
+  allowedOverrides:                 # <-- or add this block explicitly here
+    - workflow
+
+resources:
+  requests:
+    cpu: "50m"
+    memory: "128Mi"
+  limits:
+    cpu: "250m"
+    memory: "256Mi"
+
+github:
+  user: kajal-nerkar
+
+service:
+  type: LoadBalancer
+  port: 80
+  targetPort: 4141

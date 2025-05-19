@@ -50,18 +50,15 @@ variable "github_token" {
   description = "GitHub personal access token"
   type        = string
   sensitive   = true
-  default     = "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"
 }
 
 variable "github_repo" {
   description = "GitHub repository in format 'owner/repo'"
   type        = string
-  default     = "kajal-nerkar/terraform-eks-atlantis-homework"
 }
 
 variable "github_webhook_secret" {
   description = "GitHub webhook secret"
   type        = string
   sensitive   = true
-  default     = "fcb70c47ae65e2d2e41bc0548b999cd3"
 }

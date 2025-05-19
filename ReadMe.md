@@ -23,7 +23,7 @@ Ensure the following are installed and configured:
 ---
 
 ## 📁 Project Structure
-
+```
 terraform-eks-atlantis-homework/
 ├── .gitignore
 ├── atlantis-values.yaml          # Helm chart values for customizing Atlantis
@@ -48,7 +48,7 @@ terraform-eks-atlantis-homework/
 ├── scripts/                     # Utility scripts (e.g., deployment automation)
 │   └── deploy_atlantis.sh      # End-to-end deployment script
 └── README.md                    # This documentation file
-
+```
 ## 🔐 Setup Secrets as Environment Variables
 
 ```bash

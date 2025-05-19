@@ -4,4 +4,3 @@ resource "kubernetes_namespace" "atlantis" {
     name = "atlantis"
   }
 }
-

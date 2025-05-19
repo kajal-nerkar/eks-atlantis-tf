@@ -1,3 +1,6 @@
+
+***Atlantis ****
+=======
 # Atlantis on AWS EKS using Terraform and Helm
 
 This repository provisions a complete **Atlantis on EKS** setup using **Terraform**, **Helm**, and **Kubernetes**.
